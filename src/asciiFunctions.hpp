@@ -1,22 +1,4 @@
-#include "shiroko.h"
-
-int CalcTermWidth(int termWidth, int termHeight, int imageWidth, int imageHeight)
-{
-	float imageAttitude = (float)imageWidth / imageHeight;
-	float termAttitude = (float)termWidth / termHeight;
-	int newWidth;
-
-	if (termWidth / imageAttitude < termHeight)
-	{
-		newWidth = termWidth;
-	}
-	else
-	{
-		newWidth = (int)(termHeight * termAttitude);
-	}
-
-	return newWidth;
-}
+#include "shiroko.hpp"
 
 cv::Mat ResizeImage(cv::Mat image, int newWidth = 0, int newHeight = 0)
 {
@@ -25,11 +7,11 @@ cv::Mat ResizeImage(cv::Mat image, int newWidth = 0, int newHeight = 0)
 
 	if (newHeight == 0)
 	{
-		newHeight = newWidth / imageAttitude / pixelAspect;
+		newHeight = (int)(newWidth / imageAttitude / pixelAspect);
 	}
 	else if (newWidth == 0)
 	{
-		newWidth = newHeight * imageAttitude * pixelAspect;
+		newWidth = (int)(newHeight * imageAttitude * pixelAspect);
 	}
 	else
 	{
@@ -45,15 +27,13 @@ cv::Mat ResizeImage(cv::Mat image, int newWidth = 0, int newHeight = 0)
 
 float GetBrightness(int r, int g, int b)
 {
-	float brightness = ((0.21 * r) + (0.72 * g) + (0.07 * b)) / 255;
-
-	return brightness;
+	return ((0.21 * r) + (0.72 * g) + (0.07 * b)) / 255;
 }
 
 std::string AsciiImage(cv::Mat image)
 {
 	std::string asciiString = " .'`^\",:;Il!i ><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
-	int asciiString_length = std::size(asciiString) - 2;
+	int asciiString_length = (int)std::size(asciiString) - 2;
 	std::string result = "";
 
 	uint8_t *pixelPtr = (uint8_t *)image.data;

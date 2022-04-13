@@ -1,5 +1,4 @@
-﻿#include "shiroko.h"
-#include "asciiFunctions.hpp"
+﻿#include "shiroko.hpp"
 
 int main(int argc, char **argv)
 {
@@ -18,7 +17,7 @@ int main(int argc, char **argv)
 	cv::VideoCapture capture(file_path);
 	cv::Mat image;
 
-	float frameLength = 1 / capture.get(cv::CAP_PROP_FPS);
+	double frameLength = 1 / capture.get(cv::CAP_PROP_FPS);
 
 	while (capture.isOpened())
 	{

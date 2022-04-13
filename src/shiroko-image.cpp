@@ -1,5 +1,4 @@
-#include "shiroko.h"
-#include "asciiFunctions.hpp"
+#include "shiroko.hpp"
 
 int main(int argc, char **argv)
 {
