@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <time.h>
+
 #include "asciiFunctions.hpp"
 #include "terminalFunctions.hpp"
 

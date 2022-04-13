@@ -27,7 +27,7 @@ cv::Mat ResizeImage(cv::Mat image, int newWidth = 0, int newHeight = 0)
 
 float GetBrightness(int r, int g, int b)
 {
-	return ((0.21 * r) + (0.72 * g) + (0.07 * b)) / 255;
+	return ((0.21f * r) + (0.72f * g) + (0.07f * b)) / 255;
 }
 
 std::string AsciiImage(cv::Mat image)

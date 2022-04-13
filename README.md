@@ -1,3 +1,3 @@
 # Shiroko
 
-![demo](assets/demo.png)
+## CLI tool to view videos and imager in terminal
