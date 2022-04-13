@@ -1,7 +1,4 @@
-﻿#include "shiroko.h"
-
-using namespace std;
-using namespace cv;
+#include "shiroko.h"
 
 int CalcTermWidth(int termWidth, int termHeight, int imageWidth, int imageHeight)
 {
@@ -21,7 +18,7 @@ int CalcTermWidth(int termWidth, int termHeight, int imageWidth, int imageHeight
 	return newWidth;
 }
 
-Mat ResizeImage(Mat image, float newWidth = 0, float newHeight = 0)
+cv::Mat ResizeImage(cv::Mat image, float newWidth = 0, float newHeight = 0)
 {
 	float imageAttitude = (float)image.cols / image.rows;
 	float pixelAspect = 24.0f / 11.0f;
@@ -39,9 +36,9 @@ Mat ResizeImage(Mat image, float newWidth = 0, float newHeight = 0)
 		return image;
 	}
 
-	Mat resizedImage;
+	cv::Mat resizedImage;
 
-	resize(image, resizedImage, Size(newWidth, newHeight), INTER_LINEAR);
+	cv::resize(image, resizedImage, cv::Size(newWidth, newHeight), cv::INTER_LINEAR);
 
 	return resizedImage;
 }
@@ -53,15 +50,15 @@ float GetBrightness(int r, int g, int b)
 	return brightness;
 }
 
-string AsciiImage(Mat image)
+std::string AsciiImage(cv::Mat image)
 {
-	string asciiString = " .'`^\",:;Il!i ><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
-	int asciiString_length = size(asciiString) - 2;
-	string result = "";
+	std::string asciiString = " .'`^\",:;Il!i ><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+	int asciiString_length = std::size(asciiString) - 2;
+	std::string result = "";
 
 	uint8_t *pixelPtr = (uint8_t *)image.data;
 	int cn = image.channels();
-	Scalar_<uint8_t> bgrPixel;
+	cv::Scalar_<uint8_t> bgrPixel;
 
 	for (int i = 0; i < image.rows; i++)
 	{
@@ -80,38 +77,4 @@ string AsciiImage(Mat image)
 	}
 
 	return result;
-}
-
-int main(int argc, char **argv)
-{
-	string filePath;
-
-	if (argc > 1)
-	{
-		filePath = argv[1];
-	}
-	else
-	{
-		cout << "Input path of file: ";
-		cin >> filePath;
-	}
-
-	VideoCapture capture(filePath);
-	Mat image;
-
-	float frameLength = 1 / capture.get(CAP_PROP_FPS);
-
-	while (capture.isOpened())
-	{
-		capture >> image;
-		if (image.empty())
-			break;
-
-		int renderWidth = CalcTermWidth(256, 256, image.cols, image.rows);
-		string asciiImage = AsciiImage(ResizeImage(image, renderWidth));
-
-		printf("%c[%d;%df", 0x1B, 0, 0);
-
-		cout << asciiImage;
-	}
 }
