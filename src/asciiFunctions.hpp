@@ -18,7 +18,7 @@ int CalcTermWidth(int termWidth, int termHeight, int imageWidth, int imageHeight
 	return newWidth;
 }
 
-cv::Mat ResizeImage(cv::Mat image, float newWidth = 0, float newHeight = 0)
+cv::Mat ResizeImage(cv::Mat image, int newWidth = 0, int newHeight = 0)
 {
 	float imageAttitude = (float)image.cols / image.rows;
 	float pixelAspect = 24.0f / 11.0f;
