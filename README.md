@@ -1,6 +1,6 @@
 # Shiroko
 
-### CLI tool to view videos and imager in terminal
+### CLI tool to view videos and images in terminal
 
 ```txt
        BwZZ*#*mmBB
