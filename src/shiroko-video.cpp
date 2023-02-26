@@ -3,6 +3,7 @@
 int main(int argc, char **argv)
 {
 	std::string file_path;
+	int renderWidth;
 
 	if (argc > 1)
 	{
@@ -12,6 +13,16 @@ int main(int argc, char **argv)
 	{
 		std::cout << "Input path of file: ";
 		std::cin >> file_path;
+	}
+
+	if (argc > 2)
+	{
+		renderWidth = atoi(argv[2]);
+	}
+	else
+	{
+		std::cout << "Input target width: ";
+		std::cin >> renderWidth;
 	}
 
 	cv::VideoCapture capture(file_path);
@@ -28,7 +39,6 @@ int main(int argc, char **argv)
 		if (image.empty())
 			break;
 
-		int renderWidth = CalcTermWidth(120, 30, image.cols, image.rows);
 		std::string asciiImage = AsciiImage(ResizeImage(image, renderWidth));
 
 		while (timeDelta <= frame_length)

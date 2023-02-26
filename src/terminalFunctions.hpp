@@ -17,3 +17,8 @@ int CalcTermWidth(int termWidth, int termHeight, int imageWidth, int imageHeight
 
 	return newWidth;
 }
+
+int calc_new_height(int new_width, int width, int height)
+{
+	return int(float(new_width) * float(height) / float(width) * (11.0 / 24.0));
+}
