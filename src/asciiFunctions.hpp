@@ -32,7 +32,7 @@ float GetBrightness(int r, int g, int b)
 
 std::string AsciiImage(cv::Mat image)
 {
-	std::string asciiString = " .'`^\",:;Il!i ><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$";
+	std::string asciiString = " .,:;+*?\%S#@";
 	int asciiString_length = (int)std::size(asciiString) - 2;
 	std::string result = "";
 
